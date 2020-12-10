@@ -61,9 +61,11 @@ namespace Huffman.Codec.IO
 
         private void BufferBit(bool bit)
         {
-            var value = bit ? 0x01 : 0x00;
-            var mask = value << (8 - _position);
-            _buffer |= mask;
+            if (bit)
+            {
+                var shift = 8 - _position;
+                _buffer |= 0x01 << shift;
+            }
 
             _position++;
         }
