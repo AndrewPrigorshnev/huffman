@@ -28,19 +28,28 @@ namespace Huffman.Codec.IO
         public void WriteBit(bool value)
         {
             ThrowIfDisposed();
-            throw new NotImplementedException();
+            _bitWriter.WriteBit(value);
         }
 
         public void WriteByte(byte value)
         {
             ThrowIfDisposed();
-            throw new NotImplementedException();
+
+            for (var i = 7; i >= 0; i--)
+            {
+                var mask = 0x01 << i;
+                var bit = (value & mask) > 0;
+                WriteBit(bit);
+            }
         }
 
         public void WriteLong(long value)
         {
             ThrowIfDisposed();
-            throw new NotImplementedException();
+
+            var bytes = BitConverter.GetBytes(value);
+            foreach (var @byte in bytes)
+                WriteByte(@byte);
         }
 
 
