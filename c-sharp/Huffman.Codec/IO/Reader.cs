@@ -44,14 +44,13 @@ namespace Huffman.Codec.IO
         {
             ThrowIfDisposed();
 
-            // todo restore pointer if there is not enough bits for a byte value
-            // todo extract method
+            // todo what if there aren't enough bits for a byte value
+            // don't throw an exception? restore pointer then?
             var result = 0;
-            for (var i = 1; i <= 8; i++)
+            for (var shift = 7; shift >= 0; shift--)
             {
                 var bit = ReadBit() ? 0x01 : 0x00;
-                var mask = bit << (8 - i);
-                result |= mask;
+                result |= bit << shift;
             }
 
             return (byte) result;
@@ -61,14 +60,13 @@ namespace Huffman.Codec.IO
         {
             ThrowIfDisposed();
 
-            // todo restore pointer if there is not enough bits for a long value
-            // todo extract method
-            var result = 0L;
-            for (var i = 1; i <= 64; i++)
+            // todo what if there aren't enough bits for a long value
+            // don't throw an exception? restore pointer then?
+            long result = 0;
+            for (var shift = 0; shift <= 56; shift += 8)
             {
-                var bit = ReadBit() ? 0x01 : 0x00;
-                var mask = bit << (64 - i);
-                result |= mask;
+                long @byte = ReadByte() << shift;
+                result |= @byte;
             }
 
             return result;

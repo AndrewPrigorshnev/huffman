@@ -25,6 +25,12 @@ namespace Huffman.Codec.IO
             _disposed = true;
         }
 
+        public void Flush()
+        {
+            ThrowIfDisposed();
+            _bitWriter.Flush();
+        }
+
         public void WriteBit(bool value)
         {
             ThrowIfDisposed();
@@ -35,9 +41,9 @@ namespace Huffman.Codec.IO
         {
             ThrowIfDisposed();
 
-            for (var i = 7; i >= 0; i--)
+            for (var shift = 7; shift >= 0; shift--)
             {
-                var mask = 0x01 << i;
+                var mask = 0x01 << shift;
                 var bit = (value & mask) > 0;
                 WriteBit(bit);
             }

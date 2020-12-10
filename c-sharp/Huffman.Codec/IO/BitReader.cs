@@ -6,7 +6,7 @@ namespace Huffman.Codec.IO
     internal sealed class BitReader : IDisposable
     {
         private readonly Stream _stream;
-        private int _buffer; // we use only 1 byte
+        private int _buffer; // we use 1 byte only
         private int _position = 0; // position == 0 means an empty buffer
         private bool _disposed;
 
@@ -64,7 +64,8 @@ namespace Huffman.Codec.IO
             if (!HasBufferedBits)
                 throw new InvalidOperationException("There aren't buffered bits.");
 
-            var mask = 0x01 << (8 - _position);
+            var shift = 8 - _position;
+            var mask = 0x01 << shift;
             var bit = (_buffer & mask) > 0;
             _position++;
 

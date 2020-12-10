@@ -19,7 +19,7 @@ namespace Huffman.Codec.Tests.Collections
         [InlineData(new [] {1, 1, 1, 1}, new [] {1, 1, 1, 1})]
         [InlineData(new [] {1, 2, 3}, new [] {1, 2, 3})]
         [InlineData(new [] {3, 2, 1}, new [] {1, 2, 3})]
-        public void Queue_returns_ints_in_sorted_order(int[] input, int[] sorted)
+        public void Queue_should_return_ints_in_sorted_order(int[] input, int[] sorted)
         {
             var result = PutIntoQueueAndTakeBack(input);
 
@@ -29,7 +29,7 @@ namespace Huffman.Codec.Tests.Collections
         }
 
         [Fact]
-        public void Queue_returns_comparable_objects_in_sorted_order()
+        public void Queue_should_return_comparable_objects_in_sorted_order()
         {
             var input = ItemsArray.FromIntArray(new [] {4, 2, 1, 3});
             var result = PutIntoQueueAndTakeBack(input);
@@ -40,7 +40,7 @@ namespace Huffman.Codec.Tests.Collections
         }
 
         [Fact]
-        public void Insert_into_a_full_queue_leads_to_an_exception()
+        public void Insert_into_a_full_queue_should_lead_to_an_exception()
         {
             var queue = new MinPriorityQueue<int>(3);
             queue.Insert(_fixture.Create<int>());
@@ -56,12 +56,12 @@ namespace Huffman.Codec.Tests.Collections
         }
 
         [Fact]
-        public void DeleteMin_on_an_empty_queue_leads_to_an_exception()
+        public void DeleteMin_on_an_empty_queue_should_lead_to_an_exception()
         {
             var queue = new MinPriorityQueue<int>(3);
-            Action act = () => queue.RemoveMin();
+            Action action = () => queue.RemoveMin();
 
-            act
+            action
                 .Should()
                 .Throw<InvalidOperationException>()
                 .WithMessage("Queue is empty.");
