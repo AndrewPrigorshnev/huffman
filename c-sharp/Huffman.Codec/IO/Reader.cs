@@ -46,6 +46,7 @@ namespace Huffman.Codec.IO
 
             // todo what if there aren't enough bits for a byte value
             // don't throw an exception? restore pointer then?
+            // fix it even though it's not the problem in this application
             var result = 0;
             for (var shift = 7; shift >= 0; shift--)
             {
@@ -62,6 +63,7 @@ namespace Huffman.Codec.IO
 
             // todo what if there aren't enough bits for a long value
             // don't throw an exception? restore pointer then?
+            // fix it even though it's not the problem in this application
             long result = 0;
             for (var shift = 0; shift <= 56; shift += 8)
             {
