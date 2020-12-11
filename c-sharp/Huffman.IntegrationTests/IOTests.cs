@@ -72,7 +72,7 @@ namespace Huffman.IntegrationTests
         }
 
         [Fact]
-        public void Should_write_and_read_bit_sequences_mixed_with_long_values()
+        public void Should_write_and_read_bit_sequences_mixed_with_long_integers()
         {
             var sequence1 = GenerateUnalignedBitSequence();
             var longValue1 = _fixture.Create<long>();
