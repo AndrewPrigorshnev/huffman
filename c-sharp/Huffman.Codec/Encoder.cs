@@ -18,11 +18,14 @@ namespace Huffman.Codec
 
             var trie = Trie.Build(reader);
             Trie.Write(writer, trie);
-            writer.WriteLong(trie.Frequency);
+            WriteEncodedBytesCount(writer, trie.Frequency);
 
             input.Seek(0, SeekOrigin.Begin);
             EncodeAndWriteData(reader, writer, trie);
         }
+
+
+
 
         private static void EncodeAndWriteData(Reader reader, Writer writer, TrieNode trie)
         {
@@ -34,6 +37,8 @@ namespace Huffman.Codec
                 WriteCode(code, writer);
             }
         }
+
+        private static void WriteEncodedBytesCount(Writer writer, long count) => writer.WriteLong(count);
 
         private static void WriteCode(string code, Writer writer)
         {

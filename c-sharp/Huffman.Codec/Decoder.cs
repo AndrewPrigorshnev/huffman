@@ -13,8 +13,8 @@ namespace Huffman.Codec
             using var writer = new Writer(output);
 
             var trie = Trie.Read(reader);
-            var count = reader.ReadLong();
-            DecodeAndWriteData(reader, writer, trie, count);
+            var encodedBytesCount = reader.ReadLong();
+            DecodeAndWriteData(reader, writer, trie, encodedBytesCount);
         }
 
         private static void DecodeAndWriteData(
