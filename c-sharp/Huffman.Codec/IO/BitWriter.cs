@@ -85,7 +85,7 @@ namespace Huffman.Codec.IO
         private void WriteBuffer()
         {
             if (BufferIsEmpty)
-                throw new InvalidOperationException("Buffer is empty.");
+                throw new InvalidOperationException("The buffer is empty.");
 
             _stream.WriteByte((byte) _buffer);
             _position = 0;

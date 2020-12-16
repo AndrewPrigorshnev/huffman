@@ -21,7 +21,7 @@ namespace Huffman.Codec.Collections
         public void Insert(T item)
         {
             if (IsFull)
-                throw new InvalidOperationException("Queue is full.");
+                throw new InvalidOperationException("The queue is full.");
 
             _tail++;
             _heap[_tail] = item;
@@ -31,7 +31,7 @@ namespace Huffman.Codec.Collections
         public T RemoveMin()
         {
             if (IsEmpty)
-                throw new InvalidOperationException("Queue is empty.");
+                throw new InvalidOperationException("The queue is empty.");
 
             var min = _heap[1];
             _heap[1] = _heap[_tail];
