@@ -8,20 +8,20 @@ namespace Huffman.Codec
 {
     public static class Encoder
     {
-        public static void Encode(Func<Stream> getInputStream, Stream output)
+        public static void Encode(Stream input, Stream output)
         {
-            TrieNode trie;
-            using (var reader = new Reader(getInputStream()))
-                trie = Trie.Build(reader);
+            if (!input.CanSeek)
+                throw new InvalidOperationException("The input stream should be seekable.");
 
-            using (var writer = new Writer(output))
-            {
-                Trie.Write(writer, trie);
-                writer.WriteLong(trie.Frequency);
+            using var reader = new Reader(input);
+            using var writer = new Writer(output);
 
-                using (var reader = new Reader(getInputStream()))
-                    EncodeAndWriteData(reader, writer, trie);
-            }
+            var trie = Trie.Build(reader);
+            Trie.Write(writer, trie);
+            writer.WriteLong(trie.Frequency);
+
+            input.Seek(0, SeekOrigin.Begin);
+            EncodeAndWriteData(reader, writer, trie);
         }
 
         private static void EncodeAndWriteData(Reader reader, Writer writer, TrieNode trie)

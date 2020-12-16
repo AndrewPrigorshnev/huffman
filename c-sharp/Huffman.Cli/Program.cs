@@ -33,6 +33,9 @@ namespace Huffman.Cli
             PrintAndQuit(Resources.UnknownCommand(command));
         }
 
+
+
+
         private static void Expand(string? @in, string? @out)
         {
             var input = GetInputStream(@in);
@@ -42,8 +45,9 @@ namespace Huffman.Cli
 
         private static void Compress(string? @in, string? @out)
         {
+            var input = GetInputStream(@in);
             var output = GetOutputStream(@out);
-            Encoder.Encode(() => GetInputStream(@in), output);
+            Encoder.Encode(input, output);
         }
 
         private static Stream GetInputStream(string? @in)
