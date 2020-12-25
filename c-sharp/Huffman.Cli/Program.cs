@@ -17,13 +17,17 @@ namespace Huffman.Cli
 
             if (command == Commands.Compress.Name)
             {
-                Compress(@in, @out);
+                EnsureArgumentIsSpecified(nameof(@in), @in);
+                EnsureArgumentIsSpecified(nameof(@out), @out);
+                Compress(@in!, @out!);
                 return;
             }
 
             if (command == Commands.Expand.Name)
             {
-                Expand(@in, @out);
+                EnsureArgumentIsSpecified(nameof(@in), @in);
+                EnsureArgumentIsSpecified(nameof(@out), @out);
+                Expand(@in!, @out!);
                 return;
             }
 
@@ -36,35 +40,29 @@ namespace Huffman.Cli
 
 
 
-        private static void Expand(string? @in, string? @out)
+        private static void EnsureArgumentIsSpecified(string name, string? value)
+        {
+            if (string.IsNullOrEmpty(value))
+                PrintAndQuit(Resources.MissingParameter(name));
+        }
+
+        private static void Expand(string @in, string @out)
         {
             var input = GetInputStream(@in);
             var output = GetOutputStream(@out);
             Decoder.Decode(input, output);
         }
 
-        private static void Compress(string? @in, string? @out)
+        private static void Compress(string @in, string @out)
         {
             var input = GetInputStream(@in);
             var output = GetOutputStream(@out);
             Encoder.Encode(input, output);
         }
 
-        private static Stream GetInputStream(string? @in)
-        {
-            if (string.IsNullOrEmpty(@in))
-                PrintAndQuit(Resources.MissingParameter(nameof(@in)));
+        private static Stream GetInputStream(string @in) => File.OpenRead(@in);
 
-            return File.OpenRead(@in!);
-        }
-
-        private static Stream GetOutputStream(string? @out)
-        {
-            if (string.IsNullOrEmpty(@out))
-                PrintAndQuit(Resources.MissingParameter(nameof(@out)));
-
-            return File.Create(@out!);
-        }
+        private static Stream GetOutputStream(string @out) => File.Create(@out);
 
         private static void Print(string message) => Console.WriteLine(message);
 
