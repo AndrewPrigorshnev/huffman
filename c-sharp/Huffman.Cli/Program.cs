@@ -15,7 +15,7 @@ namespace Huffman.Cli
             var @in = args.Length > 1 ? args[1] : null;
             var @out = args.Length > 2 ? args[2] : null;
 
-            if (command == Commands.Compress.Name)
+            if (command == Command.Compress.Name)
             {
                 EnsureArgumentIsSpecified(nameof(@in), @in);
                 EnsureArgumentIsSpecified(nameof(@out), @out);
@@ -23,7 +23,7 @@ namespace Huffman.Cli
                 return;
             }
 
-            if (command == Commands.Expand.Name)
+            if (command == Command.Expand.Name)
             {
                 EnsureArgumentIsSpecified(nameof(@in), @in);
                 EnsureArgumentIsSpecified(nameof(@out), @out);
@@ -31,7 +31,7 @@ namespace Huffman.Cli
                 return;
             }
 
-            if (command == Commands.Help.Name)
+            if (command == Command.Help.Name)
                 PrintAndQuit(Resources.Help);
 
             PrintAndQuit(Resources.UnknownCommand(command));

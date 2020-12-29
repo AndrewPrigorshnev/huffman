@@ -8,9 +8,9 @@ namespace Huffman.Cli
         public static string Help =>
             "usage: dotnet Huffman.Cli.dll <command> [<args>]\n\n" +
             "Commands:\n\n" +
-            $"\t{FormatCommand(Commands.Compress)}\n" +
-            $"\t{FormatCommand(Commands.Expand)}\n" +
-            $"\t{FormatCommand(Commands.Help)}";
+            $"\t{FormatCommand(Command.Compress)}\n" +
+            $"\t{FormatCommand(Command.Expand)}\n" +
+            $"\t{FormatCommand(Command.Help)}";
 
         public static string MissingParameter(string name) =>
             $"Missing parameter '{name}'. {SeeHelp}";
