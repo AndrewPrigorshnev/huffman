@@ -52,7 +52,7 @@ namespace Huffman.Codec.Tests.Collections
             act
                 .Should()
                 .Throw<InvalidOperationException>()
-                .WithMessage("Queue is full.");
+                .WithMessage("The queue is full.");
         }
 
         [Fact]
@@ -64,7 +64,7 @@ namespace Huffman.Codec.Tests.Collections
             action
                 .Should()
                 .Throw<InvalidOperationException>()
-                .WithMessage("Queue is empty.");
+                .WithMessage("The queue is empty.");
         }
 
 
