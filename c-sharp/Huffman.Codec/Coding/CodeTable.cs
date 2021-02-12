@@ -9,11 +9,11 @@ namespace Huffman.Codec.Coding
         public static string[] FromTrie(TrieNode root)
         {
             var table = new string[Size];
-            BuildCodeTable(table, root, string.Empty);
+            Build(table, root, string.Empty);
             return table;
         }
 
-        private static void BuildCodeTable(string[] table, TrieNode node, string code)
+        private static void Build(string[] table, TrieNode node, string code)
         {
             if (node.IsLeaf)
             {
@@ -21,8 +21,8 @@ namespace Huffman.Codec.Coding
                 return;
             }
 
-            BuildCodeTable(table, node.Left!, $"{code}0");
-            BuildCodeTable(table, node.Right!, $"{code}1");
+            Build(table, node.Left!, $"{code}0");
+            Build(table, node.Right!, $"{code}1");
         }
     }
 }
