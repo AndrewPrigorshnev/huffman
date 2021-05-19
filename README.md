@@ -3,14 +3,11 @@
 # Huffman
 [Huffman coding](https://en.wikipedia.org/wiki/Huffman_coding) is a famous algorithm for lossless data compression.
 
-To use the C# implementation, you should have [.NET 5.0](https://dotnet.microsoft.com/download/dotnet/5.0) installed. To build and use:
-1. Go to the `c-sharp` directory:
+To use the C# implementation, you need to have [.NET 5.0](https://dotnet.microsoft.com/download/dotnet/5.0) installed. To use it:
+1. Go to the `c-sharp` directory and build the project:
    ```bash
    cd c-sharp
-   ```
-1. Build the project:
-   ```bash
-    dotnet build --configuration Release  
+   dotnet build --configuration Release
    ```
 1. Use it:
    ```bash
@@ -20,4 +17,3 @@ To use the C# implementation, you should have [.NET 5.0](https://dotnet.microsof
    # expand a compressed file
    dotnet build/net5.0/Huffman.Cli.dll expand path/to/archive.huffman path/to/expanded/file.txt
    ```
-  
