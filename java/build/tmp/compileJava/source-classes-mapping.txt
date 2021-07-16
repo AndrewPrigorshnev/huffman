@@ -1,0 +1,2 @@
+com/prigorshnev/huffman/Main.java
+ com.prigorshnev.huffman.Main

@@ -69,7 +69,9 @@ namespace Huffman.Cli
         private static void PrintAndQuit(string message)
         {
             Print(message);
-            Environment.Exit(1);
+
         }
+
+        private static void Quit() =>
     }
 }
