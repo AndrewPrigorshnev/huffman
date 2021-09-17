@@ -39,7 +39,7 @@ namespace Huffman.IntegrationTests
             var reader = new Reader(stream);
 
             var trie = GenerateTrie();
-            Trie.Write(writer, trie);
+            trie.WriteTo(writer);
             writer.Flush();
 
             stream.Seek(0, SeekOrigin.Begin);
