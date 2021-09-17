@@ -31,19 +31,5 @@ namespace Huffman.Codec.Coding
 
             return TrieNode.CreateInnerNode(Read(reader), Read(reader));
         }
-
-        public static void Write(Writer writer, TrieNode node)
-        {
-            if (node.IsLeaf)
-            {
-                writer.WriteBit(true);
-                writer.WriteByte(node.Byte);
-                return;
-            }
-
-            writer.WriteBit(false);
-            Write(writer, node.Left!);
-            Write(writer, node.Right!);
-        }
     }
 }

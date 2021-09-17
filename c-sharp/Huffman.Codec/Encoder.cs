@@ -17,7 +17,7 @@ namespace Huffman.Codec
             using var writer = new Writer(output);
 
             var trie = Trie.Build(reader);
-            Trie.Write(writer, trie);
+            trie.WriteTo(writer);
             WriteEncodedBytesCount(writer, trie.Frequency);
 
             input.Seek(0, SeekOrigin.Begin);
