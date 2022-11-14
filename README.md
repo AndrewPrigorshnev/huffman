@@ -3,7 +3,7 @@
 # Huffman
 [Huffman coding](https://en.wikipedia.org/wiki/Huffman_coding) is a famous algorithm for lossless data compression.
 
-To use the C# implementation, you should have [.NET 5.0](https://dotnet.microsoft.com/download/dotnet/5.0) installed. To use it:
+To use the C# implementation, you should have [.NET 5.0](https://dotnet.microsoft.com/download/dotnet/5.0) installed.
 1. Go to the `c-sharp` directory and build the project:
 
    ```bash
