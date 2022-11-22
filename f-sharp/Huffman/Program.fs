@@ -1,4 +1,17 @@
-﻿[<EntryPoint>]
+﻿let compress =
+    "The file is compressed"
+    
+let expand =
+    "The file is expanded"
+
+let command name =
+    match name with
+    | "compress" -> compress
+    | "expand" -> expand
+    | _ -> ()
+
+[<EntryPoint>]
 let main args =
-    printfn "Hello from Huffman"
+    expand |> printfn "%s"
     0
+    
