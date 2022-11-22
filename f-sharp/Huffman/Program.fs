@@ -1,2 +1,4 @@
-﻿// For more information see https://aka.ms/fsharp-console-apps
-printfn "Hello from Huffman"
+﻿[<EntryPoint>]
+let main args =
+    printfn "Hello from Huffman"
+    0
