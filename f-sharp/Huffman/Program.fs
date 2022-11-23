@@ -1,17 +1,21 @@
-﻿let compress source destination =
-    $"The file {source} is compressed to {destination}"
+﻿let compress (args: string[]) =
+    $"The file {args[0]} is compressed to {args[1]}"
 
-let expand source destination =
-    $"The file {source} is expanded to {destination}"
-
-let commands =
-    [ "compress", compress
-      "expand", expand ]
-    |> dict
+let expand (args: string[]) =
+    $"The file {args[0]} is expanded to {args[1]}"
+    
+let unknownCommand _ =
+    "Unknown command"
+    
+let run command =
+    match command with
+    | "compress" -> compress
+    | "expand" -> expand
+    | _ -> unknownCommand
 
 [<EntryPoint>]
 let main args =
-    commands[args[0]] args[1] args[2]
+    run args[0] args[1..]
     |> printfn "%s"
 
     0
